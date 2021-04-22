@@ -1,0 +1,32 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/ageCheck.css' %}">
+    </head>
+    <body>
+        <div id = "welcome">
+            <img src="{% static 'img/Shop-logo.svg' %}" />
+            <h1>Self-Checkout Terminal</h1>
+        </div>
+        <!-- Potential message after modification to the list -->
+        <header>
+            <h2>Please enter your birthday here.</h2>
+        </header>
+        {% if messages %}
+            {% for message in messages %}
+            {% if message.tags %}
+                <div class = "reminder">{{message}}</div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        
+        <form action="../verifyAge/" method="post">
+            {% csrf_token %}
+            {{BirthdayForm}}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

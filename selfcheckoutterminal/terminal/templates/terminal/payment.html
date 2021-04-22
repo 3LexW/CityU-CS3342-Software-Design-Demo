@@ -1,0 +1,61 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+    </head>
+    <body>
+        <div id = "welcome">
+            <img src="{% static 'img/Shop-logo.svg' %}" />
+            <h1>Self-Checkout Terminal</h1>
+        </div>
+        
+        {% if itemlist|length > 0 %}
+            <div id = "shoppingCart">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itemlist %}
+                            <tr>
+                                <td>{{item.name}}</td>
+                                <td>{{item.price}}</td>
+                            </tr>  
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>${{total}}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        {% else %}
+            <div class = "reminder">No Items in your shopping cart. </div>
+        {% endif %}
+
+        {% if itemlist|length > 0 %}
+        <header>
+            <h2>Please select your payment method</h2>
+        </header>
+        {% endif %}
+
+        <div id = "userOptions">
+            <div id="backButton"><a href="../"><img src={%static 'img/back.svg'%}></a></div>
+            {% if itemlist|length > 0 %}
+                <div id="cashButton"><img src={%static 'img/Cash.svg'%}></div>
+                <div id="octopusButton"><img src={%static 'img/Octopus.png'%}></div>
+                <div id="visaButton"><img src={%static 'img/Visa.svg'%}></div>
+                <div id="masterButton"><img src={%static 'img/Master.svg'%}></div>
+            {% endif %}
+        </div>
+    </body>
+</html>

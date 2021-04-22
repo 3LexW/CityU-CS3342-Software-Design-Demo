@@ -1,0 +1,99 @@
+{% load static %}
+
+<html>
+    <head>
+        <script defer type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    </head>
+    <body>
+        <div id = "welcome">
+            <img src="{% static 'img/Shop-logo.svg' %}" />
+            <h1>Self-Checkout Terminal</h1>
+        </div>
+
+        <!-- Potential message after modification to the list -->
+        {% if messages %}
+            {% for message in messages %}
+            {% if message.tags %}
+                <div class = "reminder">{{message}}</div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if itemlist|length > 0 %}
+            <div id = "shoppingCart">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itemlist %}
+                            <tr>
+                                <td>{{item.name}}</td>
+                                <td>{{item.price}}</td>
+                                <td>
+                                    <form action="/deleteitem/" method="post">
+                                    {% csrf_token %}
+                                        <input type="hidden" name="itemtext" value="{{item.name}}">
+                                        <input type="image" name="submit" src="{% static 'img/delete-icon.png' %}" alt="Remove Item">
+                                    </form>
+                                </td>
+                            </tr>  
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>${{total}}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        {% else %}
+            <div class = "reminder">Please add items below. You can <a href="">learn from the tutorial here</a>.</div>
+        {% endif %}
+
+        <div id="newInputButtons">
+            <input type="image" id="newText" src="{% static 'img/text-cursor.png' %}"></input>
+            <input type="image" id="newScan" src = "{% static 'img/barcode.png' %}"></input>
+            <input type="image" id="newPhoto"src = "{% static 'img/camera.png' %}"></input>
+        </div>
+        
+        <div id="newInputForms">
+            <form action="/additem_text/" method ="post" class="newInput" id="textinput">
+                {% csrf_token %}
+                <input type="text" name="itemtext" placeholder="Input item name here">
+                <input type="submit">
+            </form>
+
+            <form action="/additem_scan/" method ="post" class="newInput" id="scaninput">
+                {% csrf_token %}
+                <input type="text" name="itemscan" placeholder="Input barcode here">
+                <input type="submit">
+            </form>
+
+            <form action="/additem_image/" method ="post" class="newInput" id="imageinput">
+                {% csrf_token %}
+                <input type="file" name="itemimage">
+                <input type="submit">
+            </form>
+        <div>
+
+        <div id="UserOptions">
+            <form action="/delete/" method = "post">
+                {% csrf_token %}
+                <input type="submit" value="Cancel checkout">
+            </form>
+            
+            <form action="/payment/" method = "post">
+                {% csrf_token %}
+                <input type="submit" value="Proceed to Payment" id="toPayment">
+            </form>
+        </div>
+    </body>
+</html>

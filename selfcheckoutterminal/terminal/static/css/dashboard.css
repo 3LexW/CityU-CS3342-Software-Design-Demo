@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "ADAM.CG PRO";
+    src: url("css/fonts/ADAM.CG PRO.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    }
+
+body{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: 'Pathway Gothic One', sans-serif;
+    background-color:#e9c46a;
+}
+
+#welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: black 1px solid;
+    padding: 32px;
+    height: 30vh;
+}
+
+#welcome > img{
+    height: 50%;
+}
+
+#welcome > h1{
+    width: 100%;
+    font-family: "ADAM.CG PRO";
+    font-size: 40px;
+}
+
+.reminder{
+    text-align: center;
+    padding: 5px;
+    background-color: cornsilk;
+    border: black 1px solid;
+    border-top: 0px;
+}
+
+#newInputButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0 20px 0;
+}
+
+#newInputButtons > input{
+    height: 100%;
+    padding-top: 20px;
+}
+
+#shoppingCart{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#UserOptions{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#UserOptions > form{
+    width: 100%;
+}
+
+#UserOptions input {
+    width: 100%;
+    height: 50px;
+}
+
+table{
+    width: 60%;
+    text-align: center;
+}
+
+tr{
+    border: 1px black solid;
+}
+
+form{
+    margin: 0 auto;
+}
+
+table input{
+    height: 25px;
+}
+
+td{
+    margin: 0
+}
+
+.newInput {
+    width: 80%;
+    text-align: center;
+    padding: 20px 0 0 0;
+}
+
+form > input[type="text"], form > input[type="file"]{
+    line-height: 23px;
+    width: 250px;
+}
+
+form > input[type="submit"]{
+    height: 30px;
+}
+
+
+form > input[type="submit"]::-webkit-file-upload-button{
+    height: 30px;
+}
+
+#userOptions input[type="submit"]{
+    font-family: "ADAM.CG PRO";
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: #f4a261;
+    padding: 0;
+    border: 1px #e76f51 solid;
+    cursor: pointer;
+}
+
+th:nth-child(1), td:nth-child(1), th:nth-child(2), td:nth-child(2){
+    text-align: right;
+}
+
+th:nth-child(3), td:nth-child(3){
+    text-align: left;
+}
+
+tfoot td:nth-child(2){
+    border-top: 1px black solid;
+}
+
+td:nth-child(1), th:nth-child(21){
+    width: 50%;
+    padding: 5px;
+}
+
+td:nth-child(2), th:nth-child(2){
+    width: 30%;
+    padding: 5px;
+}
+
+#shoppingCart{
+    background-color: #f4a261;
+}
+
+table{
+    font-size: 20px;
+}
